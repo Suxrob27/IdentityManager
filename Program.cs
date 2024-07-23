@@ -64,14 +64,14 @@ opt.AddPolicy("AdminRole_CreateEditDeleteClaim_ORSuperAdminRole", policy => poli
 
 builder.Services.AddAuthentication().AddMicrosoftAccount(opt =>
 {
-    opt.ClientId = builder.Configuration["Microsoft:Id"];
-    opt.ClientSecret = builder.Configuration["Microsoft:Id"];
+    opt.ClientId = builder.Configuration.GetSection("Microsoft")["Id"];
+    opt.ClientSecret = builder.Configuration.GetSection("Microsoft")["Secret"];
 });
 
 builder.Services.AddAuthentication().AddFacebook(opt =>
 {
-    opt.ClientId = builder.Configuration["Facebook:Id"];
-    opt.ClientSecret = builder.Configuration["Facebook:Id"];
+    opt.ClientId = builder.Configuration.GetSection("Facebook")["Id"];
+    opt.ClientSecret = builder.Configuration.GetSection("Facebook")["Secret"];
 });
 var app = builder.Build();
 
